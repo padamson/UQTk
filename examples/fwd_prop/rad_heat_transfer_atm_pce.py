@@ -28,7 +28,7 @@
 #=====================================================================================
 from __future__ import print_function #so the print statements in python2 looks right
 
-import sys
+import os
 import argparse
 
 try:
@@ -299,9 +299,19 @@ plt.tick_params(axis='both', labelsize=14)
 plt.gca().tick_params(pad=6)
 # Create legend
 plt.legend(loc='upper left', prop={'size':12})
+
+
+output_dir = 'output'
+
+if not os.path.isdir(output_dir):
+    print('The output directory is not present. Creating a new one...')
+    os.mkdir(output_dir)
+else:
+    print('The output directory is already present.')
+
 # Save figure
-fig_name="heat_flux_pce.pdf"
+fig_name = f'{output_dir}/heat_flux_pce.pdf'
 plt.savefig(fig_name)
-print("\nheat_flux_pce.pdf has been saved.")
+print(f'\n{fig_name} has been saved.')
 # Show figure
 plt.show()
